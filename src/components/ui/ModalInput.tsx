@@ -6,7 +6,7 @@ interface ModalInputProps {
   register: any
   labelClassName?: string
   inputClassName?: string
-  defaultValue?:string
+  defaultValue?:string;
 }
 
 const ModalInput = ({
@@ -18,7 +18,7 @@ const ModalInput = ({
   labelClassName,
   inputClassName,
   defaultValue
-}: ModalInputProps) => {
+}:ModalInputProps) => {
   return (
     <>
       <label className={`${labelClassName} mb-1`} htmlFor={id}>
@@ -27,7 +27,7 @@ const ModalInput = ({
       <input
         defaultValue={defaultValue}
         type={type}
-        className={`${inputClassName}  bg-dgreyinput mb-2 rounded px-2`}
+        className={`${inputClassName} bg-dgreyinput rounded px-2 `}
         placeholder={placeholder}
         id={id}
         {...register(id)}
@@ -35,4 +35,5 @@ const ModalInput = ({
     </>
   )
 }
+
 export default ModalInput

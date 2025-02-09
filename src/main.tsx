@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')!).render(
     <Toaster
       toastOptions={{
         style: {
-          background: '#333',
+          background: '#141615',
           color: '#fff'
         }
       }}

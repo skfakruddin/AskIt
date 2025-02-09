@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from 'react-router'
 import toast from 'react-hot-toast'
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const { user, login, authStatus } = useAuth()
+  const { authStatus } = useAuth()
   const location = useLocation()
   const navigate = useNavigate()
 

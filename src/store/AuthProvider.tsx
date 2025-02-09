@@ -8,6 +8,8 @@ type UserData = {
     email: string;
     photo: string;
     accessToken?: string;
+    token?:string;
+    _id:string;
 };
 
 const AuthContext = createContext<{
@@ -30,11 +32,13 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             if (!res.ok) throw new Error("Failed to fetch user");
             const data = await res.json();
             setUser({
+                _id: data.user._id,
                 id: data.user.id,
                 name: data.user.displayName,
                 email: data.user.emails[0].value,
                 photo: data.user.photos[0].value,
                 accessToken: data.user.accessToken,
+                token:data.user.token
             });
             setAuthStatus(true);
         } catch (err) {

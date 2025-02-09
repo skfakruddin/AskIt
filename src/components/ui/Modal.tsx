@@ -49,10 +49,10 @@ const Modal = ({ type, isOpen, setIsOpen, joinCode }: ModalProps) => {
                      ${isOpen ? 'block' : 'hidden'}`}
       >
         <div className='flex justify-between pb-3'>
-          <h1 className={`text-xl `}>
+          <h1 className={`text-xl text-dgreen `}>
             {type == 'createRoom' ? 'Create Room' : 'Join Room'}
           </h1>
-          <button onClick={() => setIsOpen(false)}>Close</button>
+          <button onClick={() => setIsOpen(false)} className='text-dviolet'>Close</button>
         </div>
         {type === 'createRoom' && (
           <>
@@ -63,6 +63,7 @@ const Modal = ({ type, isOpen, setIsOpen, joinCode }: ModalProps) => {
               register={register}
               type='text'
               key={1}
+              inputClassName='mb-3 py-3'
             ></ModalInput>
             <ModalInput
               id='roomDescription'
@@ -71,6 +72,7 @@ const Modal = ({ type, isOpen, setIsOpen, joinCode }: ModalProps) => {
               register={register}
               type='text'
               key={2}
+              inputClassName='mb-3 py-3'
             ></ModalInput>
           </>
         )}
@@ -83,6 +85,7 @@ const Modal = ({ type, isOpen, setIsOpen, joinCode }: ModalProps) => {
               register={register}
               type='text'
               key={3}
+              inputClassName='mb-3'
               defaultValue={joinCode}
             ></ModalInput>
           ) : (
@@ -93,6 +96,7 @@ const Modal = ({ type, isOpen, setIsOpen, joinCode }: ModalProps) => {
               register={register}
               type='text'
               key={3}
+              inputClassName='mb-3 py-3'
             ></ModalInput>
           ))}
 

@@ -53,9 +53,9 @@ function HomePage () {
 
   return (
     <>
-      <div className='flex items-center justify-center h-1/2 mt-16'>
+      <div className='flex items-center justify-center h-[calc(100vh-26rem)]  sm:h-[calc(100vh-20rem)] mt-16'>
         <div>
-          <h1 className='font-dm-sans text-center text-7xl font-bold'>
+          <h1 className='font-dm-sans text-center text-7xl sm:text-8xl font-bold navFont'>
             Ask It.
           </h1>
           <div className='flex justify-center mt-5 gap-5'>
@@ -67,7 +67,7 @@ function HomePage () {
               onClick={() => {
                 setIsCreateRoom(true)
               }}
-              className='bg-dgrey cursor-pointer sm:p-5 p-5 text-dgreen text-end font-bold rounded-md'
+              className='bg-dgrey cursor-pointer sm:py-4 sm:px-5 p-3 text-dgreen text-end sm:font-bold font-semibold  hover:bg-dgreen hover:bg-opacity-70 hover:text-black  rounded-md'
             >
               Create Room
             </button>
@@ -75,12 +75,21 @@ function HomePage () {
               onClick={() => {
                 setIsJoinRoom(true)
               }}
-              className='bg-dgrey cursor-pointer sm:p-5 p-5 text-dgreen text-end font-bold rounded-md'
+              className='bg-dgrey cursor-pointer sm:py-4 sm:px-5 p-3 text-dgreen text-end sm:font-bold hover:bg-dgreen hover:bg-opacity-70 hover:text-black font-semibold rounded-md'
             >
               Join Room
             </button>
           </div>
         </div>
+      </div>
+      <div 
+        className={
+          `absolute -z-100 
+           top-[55%] left-1/2
+          -translate-x-1/2 -translate-y-1/2 
+          bg-dgreen max-w-[636px] w-[60vw] h-[30vh]
+          rounded-full blur-[14vh] md:blur-[25vh]`
+        }>
       </div>
       {isCreateRoom && (
         <Modal

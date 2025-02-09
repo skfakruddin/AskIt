@@ -26,7 +26,7 @@ const Button = ({
     <button
       className={
             `${className} ${variantStyle}
-            text-neutral  font-bold py-2 px-4 rounded
+            text-neutral  font-bold py-2 px-4 rounded 
             ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
             cursor-pointer`
             
