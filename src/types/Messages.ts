@@ -51,7 +51,7 @@ export interface UpvotePingPayload {
     upvote: number;
 }
 export interface AnsweredPayload {
-    askId: string;
+    askId: number;
     joinCode: string;
 }
 export interface AnsweredPingPayload {

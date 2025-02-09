@@ -1,4 +1,4 @@
-import { AskPayload, JoinPayload, LeavePayload, UpvotePayload, WsMessage } from '../types/Messages'
+import { AnsweredPayload, AskPayload, JoinPayload, LeavePayload, UpvotePayload, WsMessage } from '../types/Messages'
 
 type UserData = {
   id: string
@@ -12,13 +12,10 @@ export async function connectionToSocket (user: UserData) {
   const token = user.token
   const socket = new WebSocket('wss://4cfw3zvk-8080.inc1.devtunnels.ms', token)
   socket.onopen = () => {
-    console.log('Connected to socket')
   }
-  socket.onmessage = event => {
-    console.log('Message:', event.data)
+  socket.onmessage = () => {
   }
   socket.onclose = () => {
-    console.log('Disconnected from socket')
   }
   return socket
 }
@@ -80,7 +77,7 @@ export async function upvoteQuestion (
   askId: number,
   upvoted: boolean
 ) {
-    let upvote:-1|1= upvoted?-1:1
+    const upvote:-1|1= upvoted?-1:1
     const UpvoteMessage:WsMessage<UpvotePayload>={
         type:'upvote',
         payload:{
@@ -91,6 +88,23 @@ export async function upvoteQuestion (
     }
   socket.send(
     JSON.stringify(UpvoteMessage)
+  )
+}
+
+export async function answeredQuestion (
+  socket: WebSocket,
+  joinCode: string,
+  askId: number
+) {
+    const AnswerMessage:WsMessage<AnsweredPayload>={
+        type:'answered',
+        payload:{
+            askId:askId,
+            joinCode:joinCode
+        }
+    }
+  socket.send(
+    JSON.stringify(AnswerMessage)
   )
 }
 

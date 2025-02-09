@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 import Modal from '../components/ui/Modal'
-import { useAuth } from '../store/AuthProvider'
+import { useAuth } from '../hooks/useAuth'
 import { createRoom } from '../handlers/initRoom'
 import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router'
+import { motion } from 'framer-motion'
 type CreateRoomHandlerType = {
   roomTitle: string
   roomDescription: string
@@ -25,16 +26,14 @@ function HomePage () {
 
   useEffect(() => {
     const loginIntent = localStorage.getItem('loginIntent')
-    let data = localStorage.getItem('intentData')
+    const data = localStorage.getItem('intentData')
     const intentData = data ? JSON.parse(data) : null
     if (loginIntent === 'createRoom' && intentData && user) {
-      console.log('creating room', intentData)
       createRoom(intentData as CreateRoomHandlerType).then(createdRoom => {
         if (createdRoom.error) {
-          console.log('Error creating room', createdRoom.error)
+          console.error('Error creating room', createdRoom.error)
           toast.error('Error creating room')
         } else {
-          console.log('Room created', createdRoom)
           toast.success('Room created')
           navigate(`/ask/${createdRoom.room.joinCode}`)
         }
@@ -42,14 +41,13 @@ function HomePage () {
       localStorage.removeItem('loginIntent')
       localStorage.removeItem('intentData')
     } else if (loginIntent === 'joinRoom' && intentData && user) {
-      console.log('joining room', intentData)
       if(!(intentData.joinCode === '' || intentData.joinCode === null || intentData.joinCode === undefined)) {
         navigate(`/ask/${intentData.joinCode}`)
         localStorage.removeItem('loginIntent')
         localStorage.removeItem('intentData')
       }
     }
-  }, [user])
+  }, [user,navigate])
 
   return (
     <>
@@ -59,15 +57,11 @@ function HomePage () {
             Ask It.
           </h1>
           <div className='flex justify-center mt-5 gap-5'>
-            {/* Ended Button */}
-            {/* <button className='bg-dgrey text-dgreen font-bold rounded-md flex items-end h-20 p-5'>
-              Create Room
-            </button> */}
             <button
               onClick={() => {
                 setIsCreateRoom(true)
               }}
-              className='bg-dgrey cursor-pointer sm:py-4 sm:px-5 p-3 text-dgreen text-end sm:font-bold font-semibold  hover:bg-dgreen hover:bg-opacity-70 hover:text-black  rounded-md'
+              className='bg-dgrey cursor-pointer sm:py-4 sm:px-5 p-3 text-dgreen text-end sm:font-bold font-semibold    rounded-md'
             >
               Create Room
             </button>
@@ -75,14 +69,14 @@ function HomePage () {
               onClick={() => {
                 setIsJoinRoom(true)
               }}
-              className='bg-dgrey cursor-pointer sm:py-4 sm:px-5 p-3 text-dgreen text-end sm:font-bold hover:bg-dgreen hover:bg-opacity-70 hover:text-black font-semibold rounded-md'
+              className='bg-dgrey cursor-pointer sm:py-4 sm:px-5 p-3 text-dgreen text-end sm:font-bold  font-semibold rounded-md'
             >
               Join Room
             </button>
           </div>
         </div>
       </div>
-      <div 
+      {/* <div 
         className={
           `absolute -z-100 
            top-[55%] left-1/2
@@ -90,7 +84,20 @@ function HomePage () {
           bg-dgreen max-w-[636px] w-[60vw] h-[30vh]
           rounded-full blur-[14vh] md:blur-[25vh]`
         }>
-      </div>
+      </div> */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.3, ease: "easeOut" }}
+        className={`
+          absolute -z-100 
+          top-[50%] sm:top-[53%] left-1/2 
+          -translate-x-1/2 -translate-y-1/2 
+          bg-dgreen md:max-w-[636px] w-[46vw] sm:w-[50vw] sm:h-[30vh] h-[20vh]
+          rounded-full blur-[8.6vh] md:blur-[25vh]
+        `}
+      />
+
       {isCreateRoom && (
         <Modal
           type='createRoom'

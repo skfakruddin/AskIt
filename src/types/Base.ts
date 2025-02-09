@@ -1,4 +1,3 @@
-import { WebSocket } from 'ws';
 export type AskROOM = {
     id: number;
     question: string;

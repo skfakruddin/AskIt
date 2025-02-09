@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useAuth } from '../store/AuthProvider'
+import { useAuth } from '../hooks/useAuth'
 import { useNavigate, useLocation } from 'react-router'
 import toast from 'react-hot-toast'
 
@@ -19,7 +19,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
         navigate('/')
       }
     }
-  }, [authStatus])
+  }, [authStatus, navigate, location.pathname])
 
   if (authStatus === null) return <>Loading...</>
   if (authStatus === false) return null

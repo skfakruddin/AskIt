@@ -1,5 +1,4 @@
-import { useContext, createContext, useState, useEffect } from 'react'
-import { useNavigate } from 'react-router'
+import { createContext } from 'react'
 
 const CommonContext = createContext<{
     BE_URL: string
@@ -8,9 +7,9 @@ const CommonContext = createContext<{
 })
 
 const CommonProvider = ({ children }: { children: React.ReactNode }) => {
-  const navigate = useNavigate()
 
-  const BE_URL = "https://4cfw3zvk-5000.inc1.devtunnels.ms"
+  // const BE_URL = "https://4cfw3zvk-5000.inc1.devtunnels.ms"
+  const BE_URL = "https://askitengine.vercel.app"
 
   return (
     <CommonContext.Provider value={{BE_URL}}>
@@ -21,6 +20,5 @@ const CommonProvider = ({ children }: { children: React.ReactNode }) => {
 
 export default CommonProvider;
 
-export const useCommon = () => {
-  return useContext(CommonContext)
-}
+
+export {CommonContext}

@@ -1,6 +1,6 @@
 import Button from './ui/Button'
 import googleIcon from '../assets/googleIcon.svg'
-import { useAuth } from '../store/AuthProvider'
+import { useAuth } from '../hooks/useAuth'
 import { Link } from 'react-router'
 import { useLocation } from 'react-router'
 function Navbar () {

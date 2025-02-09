@@ -1,5 +1,5 @@
-import toast, { ToastBar } from 'react-hot-toast'
-import { useRoom } from '../store/RoomProvider'
+import toast from 'react-hot-toast'
+import { useRoom } from '../hooks/useRoom'
 import { endRoom, leaveRoom } from '../handlers/socketHandlers'
 import { useNavigate } from 'react-router'
 type RoomNavProps = {
@@ -26,7 +26,12 @@ function RoomNav ({
     navigator.clipboard.writeText(link)
     toast('Link Copied', {
       icon: '🔗'
-    })
+    });
+    console.log(roomDescription)
+  };
+
+  if(roomName.split('').length>15){
+    roomName = roomName.slice(0,10)+'...'
   }
 
   const { socketRef } = useRoom()
@@ -48,17 +53,17 @@ function RoomNav ({
           <div className='hidden lg:flex'>
             <div className='bg-dlightgrey px-4 py-2 rounded-l-md'>
               <p className='text-white'>
-                Attendees {attendeeCount}
+                Attendees 999{attendeeCount}
                 <span className='mx-3'>|</span>
               </p>
             </div>
             <div className='bg-dlightgrey pe-4 py-2'>
               <p className='text-white'>
-                Asks {askCount} <span className='mx-3'>|</span>
+                Asks 99{askCount} <span className='mx-3'>|</span>
               </p>
             </div>
             <div className='bg-dlightgrey pe-4 py-2 rounded-r-md'>
-              <p className='text-white'>Answered {answeredCount} </p>
+              <p className='text-white'>Answered 999{answeredCount} </p>
             </div>
           </div>
         </div>

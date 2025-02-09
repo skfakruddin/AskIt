@@ -1,6 +1,6 @@
-import { useContext, createContext, useState, useEffect, useRef } from 'react'
+import { createContext, useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router'
-import { useAuth } from './AuthProvider'
+import { useAuth } from '../hooks/useAuth'
 import {
   generateRandomEmoji,
   joinRoomHandler
@@ -45,14 +45,12 @@ const RoomProvider = ({ children }: { children: React.ReactNode }) => {
       joinRoom(joinCode)
         .then(joinedRoom => {
           if (joinedRoom.error) {
-            console.log('error:', joinedRoom)
+            console.error('error:', joinedRoom)
             toast.error(joinedRoom.message || 'Error joining room')
             navigate('/')
           } else {
-            console.log('joinedRoom:', joinedRoom)
             toast.success('Room joined successfully')
             const room = joinedRoom.room
-            console.log('room:', room)
             if (room) {
               setRoomName(room.title)
               setRoomDescription(room.description)
@@ -70,7 +68,6 @@ const RoomProvider = ({ children }: { children: React.ReactNode }) => {
               token
             )
             socketRef.current.onopen = () => {
-              console.log('Connected to socket')
               setLoading(false)
               forceUpdate(prev => prev + 1)
               if (socketRef.current)
@@ -78,25 +75,15 @@ const RoomProvider = ({ children }: { children: React.ReactNode }) => {
             }
             socketRef.current.onmessage = event => {
               const message = JSON.parse(event.data)
-              console.log('message:', message)
               if (message.type === 'joinPing' || message.type === 'leavePing') {
                 setJoinCount(message.payload.attendees)
               }
               if (message.type === 'joinNotify') {
                 setRole(message.payload.role)
                 const newAsks: Record<string, ask> = {}
-                console.log('message.payload.asks:', message.payload.asks)
                 const asks = message.payload.asks
                 for (const ask of asks) {
-                  console.log('ask: ', ask);
-                  console.log('ask.upvotedBy:', ask.upvotedBy)
-                  console.log('user._id:', user._id)
-                  // console.log('user: ', user);
-                  
                   const isUpvoted = ask.upvotedBy.includes(user._id)
-                  console.log("isUpvoted", isUpvoted)
-                  console.log("askId", ask.id)
-                  console.log('newAsks: ', newAsks);
                   newAsks[ask.id] = {
                     askId: ask.id,
                     question: ask.question,
@@ -129,6 +116,21 @@ const RoomProvider = ({ children }: { children: React.ReactNode }) => {
                 }
               }
 
+              if(message.type==="answeredPing"){
+                if(message.payload){
+                  const askId = message.payload.id;
+                  setAsks(prevAsks => {
+                    const newAsks = { ...prevAsks };
+                    Object.values(newAsks).forEach(ask=>{
+                      if(ask.askId === askId){
+                        ask.answered = !ask.answered;
+                      }
+                    })
+                    return newAsks;
+                  });
+                }
+              }
+
               if (message.type === "upvotePing") {
                 if (message.payload) {
                   const askId = message.payload.id;
@@ -156,7 +158,7 @@ const RoomProvider = ({ children }: { children: React.ReactNode }) => {
   }, [joinCode, user, navigate])
 
   useEffect(() => {
-    console.log(asks)
+    setAnsweredCount(Object.values(asks).filter(ask => ask.answered).length);
   }, [asks])
 
   return (
@@ -182,6 +184,6 @@ const RoomProvider = ({ children }: { children: React.ReactNode }) => {
 
 export default RoomProvider
 
-export const useRoom = () => {
-  return useContext(RoomContext)
-}
+
+
+export {RoomContext}

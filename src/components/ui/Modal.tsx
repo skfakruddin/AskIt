@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form'
-import { useAuth } from '../../store/AuthProvider'
+import { useAuth } from '../../hooks/useAuth'
 import googleIcon from '../../assets/googleIcon.svg'
 import Button from './Button'
 import ModalInput from './ModalInput'
@@ -18,20 +18,17 @@ const Modal = ({ type, isOpen, setIsOpen, joinCode }: ModalProps) => {
   const navigate = useNavigate()
 
   async function handleFormSubmit (data: any) {
-    console.log('data: ', data)
     if (!user) {
-      localStorage.setItem('loginIntent', type)
-      localStorage.setItem('intentData', JSON.stringify(data))
-      console.log('Login in Modal')
-      login()
+      localStorage.setItem('loginIntent', type);
+      localStorage.setItem('intentData', JSON.stringify(data));
+      login();
     } else {
       if (type == 'createRoom') {
         const newRoom = await createRoom(data)
         if (newRoom.error) {
-          console.log('Error creating room: ', newRoom.message)
+          console.error('Error creating room: ', newRoom.message)
           navigate('/')
         } else {
-          console.log('New room created: ', newRoom)
           navigate(`/ask/${newRoom.joinCode}`)
         }
       } else if (type == 'joinRoom') {
@@ -49,10 +46,10 @@ const Modal = ({ type, isOpen, setIsOpen, joinCode }: ModalProps) => {
                      ${isOpen ? 'block' : 'hidden'}`}
       >
         <div className='flex justify-between pb-3'>
-          <h1 className={`text-xl text-dgreen `}>
+          <h1 className={`text-xl `}>
             {type == 'createRoom' ? 'Create Room' : 'Join Room'}
           </h1>
-          <button onClick={() => setIsOpen(false)} className='text-dviolet'>Close</button>
+          <button onClick={() => setIsOpen(false)} className=''>Close</button>
         </div>
         {type === 'createRoom' && (
           <>
@@ -63,7 +60,7 @@ const Modal = ({ type, isOpen, setIsOpen, joinCode }: ModalProps) => {
               register={register}
               type='text'
               key={1}
-              inputClassName='mb-3 py-3'
+              inputClassName='mb-3 py-1'
             ></ModalInput>
             <ModalInput
               id='roomDescription'
@@ -72,7 +69,7 @@ const Modal = ({ type, isOpen, setIsOpen, joinCode }: ModalProps) => {
               register={register}
               type='text'
               key={2}
-              inputClassName='mb-3 py-3'
+              inputClassName='mb-3 py-1'
             ></ModalInput>
           </>
         )}
@@ -96,7 +93,7 @@ const Modal = ({ type, isOpen, setIsOpen, joinCode }: ModalProps) => {
               register={register}
               type='text'
               key={3}
-              inputClassName='mb-3 py-3'
+              inputClassName='mb-3 py-1'
             ></ModalInput>
           ))}
 

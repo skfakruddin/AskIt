@@ -1,11 +1,11 @@
 interface ButtonProps {
-  text: String
+  text: string
   action?: Function
-  className?: String
+  className?: string
   disabled?: boolean
   icon?: React.ReactNode
   variant?: 'primary' | 'danger'
-  imgClass?: String
+  imgClass?: string
 }
 const variantClasses = {
   primary: 'hover:bg-dwhite hover:text-black border border-dwhite',

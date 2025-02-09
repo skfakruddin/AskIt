@@ -1,21 +1,10 @@
 import { useParams } from 'react-router'
-import { useEffect, useState, useRef } from 'react'
-import { useNavigate } from 'react-router'
+import { useEffect } from 'react'
 import Bento from '../components/Bento'
 import RoomNav from '../components/RoomNav'
-import { useRoom } from '../store/RoomProvider'
+import { useRoom } from '../hooks/useRoom'
 
-interface JoinedRoom {
-  room: {
-    title: string
-    description: string
-  }
-  error?: boolean
-  message?: string
-}
 const Room = () => {
-  const navigate = useNavigate()
-
   const {
     setJoinCode,
     loading,
@@ -25,7 +14,6 @@ const Room = () => {
     asks,
     joinCount,
     role,
-    socketRef
   } = useRoom()
 
   const { joinCode } = useParams<{ joinCode: string }>()
@@ -34,7 +22,6 @@ const Room = () => {
     if (joinCode) {
       setJoinCode(joinCode)
     };
-    console.log("Loading state in Room:", loading);
   }, [joinCode,setJoinCode, loading])
 
   if (loading) {

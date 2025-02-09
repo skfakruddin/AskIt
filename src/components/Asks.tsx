@@ -1,4 +1,4 @@
-import { useRoom } from '../store/RoomProvider'
+import { useRoom } from '../hooks/useRoom'
 import { ask } from '../types/AskTypes'
 import Ask from './ui/Ask'
 import Button from './ui/Button'
@@ -24,10 +24,10 @@ function Asks ({ asks }: AsksProps) {
   }
   return (
     <div className='bg-dcardbg h-[calc(100vh-16rem)] sm:h-[calc(100vh-11rem)] rounded-lg '>
-      <h1 className='sticky top-1 text-2xl m-3 pb-2'>Asks</h1>
+      <h1 className='text-2xl m-3 pb-2'>Asks</h1>
       <div className='pl-2 pb-[41px] h-[calc(100%-4rem)]  overflow-y-scroll  scrollbar-thin-custom scrollbar-thin-custom::-webkit-scrollbar-thumb '>
         {Object.values(asks).map(ask => (
-          <Ask
+          <Ask 
             key={ask.askId}
             askId={ask.askId}
             question={ask.question}
@@ -40,7 +40,7 @@ function Asks ({ asks }: AsksProps) {
       </div>
       {role === 'attendee' && (
         <form
-          className={`flex sticky bottom-0`}
+          className={`flex relative top-[-6.1%]`}
           onSubmit={handleSubmit(data => onAsk(data))}
         >
           <ModalInput
