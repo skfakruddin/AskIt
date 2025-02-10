@@ -64,7 +64,7 @@ const RoomProvider = ({ children }: { children: React.ReactNode }) => {
           if (user) {
             const token = user.token
             socketRef.current = new WebSocket(
-              'wss://4cfw3zvk-8080.inc1.devtunnels.ms/',
+              'wss://askitservice.centralindia.cloudapp.azure.com',
               token
             )
             socketRef.current.onopen = () => {

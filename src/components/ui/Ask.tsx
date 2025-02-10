@@ -18,12 +18,21 @@ function Ask ({ answered, askId, emoji, question, upvoted, upvotes }: ask) {
     }>
       <div className='flex gap-2 w-[80%] sm:w-[84%] break-all '>
         <p>{emoji}</p>
-        <p onClick={handleAnswered} className={`cursor-pointer ${answered ? 'line-through' : ''} break-all`}>
+        <p onClick={handleAnswered} 
+          className={
+            `${role=='speaker'  && 'cursor-pointer' } 
+            ${answered ? 'line-through' : ''} break-all`
+          }
+        >
           {question}
         </p>
       </div>
       <div className={`flex`}>
-        <Upvote upvoteCount={String(upvotes)} upvoted={upvoted} askId={askId} />
+        <Upvote 
+          upvoteCount={String(upvotes)}
+          upvoted={upvoted}
+          askId={askId}
+        />
       </div>
     </div>
   )

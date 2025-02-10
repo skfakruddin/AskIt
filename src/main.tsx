@@ -3,7 +3,6 @@ import './index.css'
 import App from './App.tsx'
 import { BrowserRouter } from 'react-router'
 import AuthProvider from './store/AuthProvider.tsx'
-import CommonProvider from './store/CommonProvider.tsx'
 import { Toaster } from 'react-hot-toast'
 
 createRoot(document.getElementById('root')!).render(
@@ -16,10 +15,8 @@ createRoot(document.getElementById('root')!).render(
         }
       }}
     />
-    <CommonProvider>
       <AuthProvider>
         <App />
       </AuthProvider>
-    </CommonProvider>
   </BrowserRouter>
 )

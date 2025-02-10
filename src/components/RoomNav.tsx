@@ -53,17 +53,17 @@ function RoomNav ({
           <div className='hidden lg:flex'>
             <div className='bg-dlightgrey px-4 py-2 rounded-l-md'>
               <p className='text-white'>
-                Attendees 999{attendeeCount}
+                Attendees {attendeeCount}
                 <span className='mx-3'>|</span>
               </p>
             </div>
             <div className='bg-dlightgrey pe-4 py-2'>
               <p className='text-white'>
-                Asks 99{askCount} <span className='mx-3'>|</span>
+                Asks {askCount} <span className='mx-3'>|</span>
               </p>
             </div>
             <div className='bg-dlightgrey pe-4 py-2 rounded-r-md'>
-              <p className='text-white'>Answered 999{answeredCount} </p>
+              <p className='text-white'>Answered {answeredCount} </p>
             </div>
           </div>
         </div>

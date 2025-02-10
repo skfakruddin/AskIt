@@ -3,7 +3,11 @@ type CreateRoomHandlerType = {
     roomDescription: string
 }
 export const createRoom = async({roomTitle, roomDescription}:CreateRoomHandlerType)=>{
-    const BE_URL = "https://4cfw3zvk-5000.inc1.devtunnels.ms"
+
+    // const BE_URL = "https://4cfw3zvk-5000.inc1.devtunnels.ms"
+    // const BE_URL = "https://askitengine.vercel.app"
+    const BE_URL = "https://askitengine.centralindia.cloudapp.azure.com"
+
     const response = await fetch(`${BE_URL}/room/create`, {
         method: 'POST',
         headers: {
@@ -28,7 +32,10 @@ export const createRoom = async({roomTitle, roomDescription}:CreateRoomHandlerTy
 }
 
 export const joinRoom = async(joinCode:string)=>{
-    const BE_URL = "https://4cfw3zvk-5000.inc1.devtunnels.ms"
+    // const BE_URL = "https://4cfw3zvk-5000.inc1.devtunnels.ms"
+    // const BE_URL = "https://askitengine.vercel.app"
+    const BE_URL = "https://askitengine.centralindia.cloudapp.azure.com"
+
     const res = await  fetch(`${BE_URL}/room/join/${joinCode}`, {
         method:"PUT",
         headers: {

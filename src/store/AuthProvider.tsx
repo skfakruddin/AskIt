@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useCommon } from "../hooks/useCommon";
-type UserData = {
+type UserData = 
+{
     id: string;
     name: string;
     email: string;
@@ -23,7 +23,10 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [user, setUser] = useState<UserData | null>(null);
     const [authStatus, setAuthStatus] = useState<boolean|null>(null);
     const navigate = useNavigate();
-    const { BE_URL } = useCommon();
+    // const BE_URL = "https://4cfw3zvk-5000.inc1.devtunnels.ms"
+    // const BE_URL = "https://askitengine.vercel.app"
+    const BE_URL = "https://askitengine.centralindia.cloudapp.azure.com"
+
 
     async function fetchUser () {
         try {
@@ -48,6 +51,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     const login = () => {
+        console.log("login");
         window.location.href = `${BE_URL}/auth/google`;
     };
 
