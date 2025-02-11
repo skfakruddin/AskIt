@@ -25,12 +25,13 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const navigate = useNavigate();
     // const BE_URL = "https://4cfw3zvk-5000.inc1.devtunnels.ms"
     // const BE_URL = "https://askitengine.vercel.app"
-    const BE_URL = "https://askitengine.centralindia.cloudapp.azure.com"
-
+    // const BE_URL = "https://askitengine.centralindia.cloudapp.azure.com"
+    const BE_URL = import.meta.env.VITE_BE_URL;
 
     async function fetchUser () {
         try {
             const res = await fetch(`${BE_URL}/auth/user`, { credentials: "include" });
+            console.log("Fetching User");
             if (!res.ok) throw new Error("Failed to fetch user");
             const data = await res.json();
             setUser({

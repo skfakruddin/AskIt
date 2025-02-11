@@ -11,7 +11,9 @@ type UserData = {
 }
 export async function connectionToSocket (user: UserData) {
   const token = user.token
-  const socket = new WebSocket('wss://askitservice.centralindia.cloudapp.azure.com', token)
+  const wsURL = import.meta.env.VITE_WS_URL;
+  const socket = new WebSocket(wsURL, token)
+  // const socket = new WebSocket('wss://askitservice.centralindia.cloudapp.azure.com', token)
   // const socket = new WebSocket('wss://zn12df18-8080.inc1.devtunnels.ms/', token)
   // const socket = new WebSocket('wss://4cfw3zvk-8080.inc1.devtunnels.ms', token)
   socket.onopen = () => {

@@ -63,10 +63,12 @@ const RoomProvider = ({ children }: { children: React.ReactNode }) => {
         .then(() => {
           if (user) {
             const token = user.token
-            socketRef.current = new WebSocket(
-              'wss://askitservice.centralindia.cloudapp.azure.com',
-              token
-            )
+            const wsURL = import.meta.env.VITE_WS_URL;
+            socketRef.current = new WebSocket(wsURL,token)
+            // socketRef.current = new WebSocket(
+            //   'wss://askitservice.centralindia.cloudapp.azure.com',
+            //   token
+            // )
             socketRef.current.onopen = () => {
               setLoading(false)
               forceUpdate(prev => prev + 1)
