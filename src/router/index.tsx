@@ -34,6 +34,14 @@ const normalRoutes: RouteObject = {
           <Profile />
         </ProtectedRoute>
       )
+    },
+    {
+      path:'/profile/:joinCode',
+      element: (
+        <ProtectedRoute>
+          <Profile />
+        </ProtectedRoute>
+      )
     }
   ]
 }
