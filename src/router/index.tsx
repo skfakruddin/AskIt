@@ -6,6 +6,7 @@ import Profile from '../pages/Profile.page'
 import ProtectedRoute from './ProtectedRoute'
 import RoomProvider from '../store/RoomProvider'
 import ProfileProvider from '../store/ProfileProvider'
+import Archive from '../components/Archive'
 const normalRoutes: RouteObject = {
   path: '/',
   element: <Layout />,
@@ -36,18 +37,24 @@ const normalRoutes: RouteObject = {
             <Profile />
           </ProfileProvider>
         </ProtectedRoute>
-      )
+      ),
+      children:[
+        {
+          path:'/profile/:joinCode',
+          element:<Archive/>
+        }
+      ]
     },
-    {
-      path: '/profile/:joinCode',
-      element: (
-        <ProtectedRoute>
-          <ProfileProvider>
-            <Profile />
-          </ProfileProvider>
-        </ProtectedRoute>
-      )
-    }
+    // {
+    //   path: '/profile/:joinCode',
+    //   element: (
+    //     <ProtectedRoute>
+    //       <ProfileProvider>
+    //         <Profile />
+    //       </ProfileProvider>
+    //     </ProtectedRoute>
+    //   )
+    // }
   ]
 }
 
