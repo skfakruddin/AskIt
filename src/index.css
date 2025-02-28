@@ -58,3 +58,44 @@ body{
     border: 2px solid #d1d5db;
   }
 }
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+::-webkit-scrollbar {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+::-webkit-scrollbar:hover {
+  opacity: 1;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+}
+
+* {
+  -ms-scrollbar-track-color: transparent;
+}
+

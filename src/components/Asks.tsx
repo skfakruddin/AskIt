@@ -25,7 +25,7 @@ function Asks ({ asks }: AsksProps) {
   return (
     <div className='bg-dcardbg h-[calc(100vh-16rem)] sm:h-[calc(100vh-11rem)] rounded-lg '>
       <h1 className='text-2xl m-3 pb-2'>Asks</h1>
-      <div className='pl-2 pb-[41px] h-[calc(100%-4rem)]  overflow-y-scroll  scrollbar-thin-custom scrollbar-thin-custom::-webkit-scrollbar-thumb '>
+      <div className='pl-2 pb-[41px] h-[calc(100%-4rem)] overflow-y-scroll scrollbar-thin-custom'>
         {Object.values(asks).map(ask => (
           <Ask 
             key={ask.askId}
@@ -37,7 +37,7 @@ function Asks ({ asks }: AsksProps) {
             emoji={ask.emoji}
           />
         ))}
-      </div>
+    </div>
       {role === 'attendee' && (
         <form
           className={`flex relative top-[-6.1%]`}

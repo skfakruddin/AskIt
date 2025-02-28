@@ -13,10 +13,10 @@ function Bento () {
           <Asks asks={asks} />
         </div>
         <div className='hidden md:grid col-span-2 grid-rows-2 '>
-          <div className='bg-dcardbg rounded-lg  sm:h-[calc((100vh-11.6rem)/2)] overflow-y-scroll grid-rows-1 mb-3'>
+          <div className='bg-dcardbg rounded-lg  sm:h-[calc((100vh-11.6rem)/2)] grid-rows-1 mb-3'>
             <MostUpvoted />
           </div>
-          <div className='bg-dcardbg rounded-lg grid-rows-1  sm:h-[calc((100vh-11.6rem)/2)] overflow-y-scroll'>
+          <div className='bg-dcardbg rounded-lg grid-rows-1  sm:h-[calc((100vh-11.6rem)/2)]'>
             <Answered />
           </div>
         </div>

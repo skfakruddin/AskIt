@@ -5,6 +5,7 @@ import Room from '../pages/Room.page'
 import Profile from '../pages/Profile.page'
 import ProtectedRoute from './ProtectedRoute'
 import RoomProvider from '../store/RoomProvider'
+import ProfileProvider from '../store/ProfileProvider'
 const normalRoutes: RouteObject = {
   path: '/',
   element: <Layout />,
@@ -31,15 +32,19 @@ const normalRoutes: RouteObject = {
       path: '/profile',
       element: (
         <ProtectedRoute>
-          <Profile />
+          <ProfileProvider>
+            <Profile />
+          </ProfileProvider>
         </ProtectedRoute>
       )
     },
     {
-      path:'/profile/:joinCode',
+      path: '/profile/:joinCode',
       element: (
         <ProtectedRoute>
-          <Profile />
+          <ProfileProvider>
+            <Profile />
+          </ProfileProvider>
         </ProtectedRoute>
       )
     }

@@ -23,7 +23,7 @@ function Navbar () {
       }
       <div className=''>
         {user ? (
-          <div className='mr-3'>
+          <div className='mr-3 flex items-center gap-2'>
             <Link to='/profile'>
               <img
                 src={userPhoto}
