@@ -21,13 +21,13 @@ const ModalInput = ({
 }:ModalInputProps) => {
   return (
     <>
-      <label className={`${labelClassName} mb-1`} htmlFor={id}>
+      <label className={`${labelClassName} mb-1 font-semibold`} htmlFor={id}>
         {label}
       </label>
       <input
         defaultValue={defaultValue}
         type={type}
-        className={`${inputClassName} bg-dgreyinput rounded px-2 `}
+        className={`${inputClassName} bg-dmodelInput backdrop-blur-lg rounded px-2 `}
         placeholder={placeholder}
         id={id}
         {...register(id)}

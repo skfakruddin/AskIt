@@ -14,7 +14,6 @@ type RoomNavProps = {
 
 function RoomNav ({
   roomName,
-  roomDescription,
   joinCode,
   attendeeCount,
   askCount,
@@ -27,7 +26,6 @@ function RoomNav ({
     toast('Link Copied', {
       icon: '🔗'
     });
-    console.log(roomDescription)
   };
 
   if(roomName.split('').length>15){

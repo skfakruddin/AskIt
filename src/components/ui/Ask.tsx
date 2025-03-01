@@ -16,12 +16,12 @@ function Ask ({ answered, askId, emoji, question, upvoted, upvotes }: ask) {
       `flex items-start text-lg p-1 justify-between mr-5 mb-3
       ${answered ? 'opacity-80' : ''}`
     }>
-      <div className='flex gap-2 w-[80%] sm:w-[84%] break-all '>
+      <div className='flex gap-2 w-[80%] sm:w-[84%] break-words '>
         <p>{emoji}</p>
         <p onClick={handleAnswered} 
           className={
             `${role=='speaker'  && 'cursor-pointer' } 
-            ${answered ? 'line-through' : ''} break-all`
+            ${answered ? 'line-through' : ''} break-words`
           }
         >
           {question}

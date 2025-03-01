@@ -17,6 +17,9 @@ body{
     --color-dgreyinput:#3d3d3d;
     --color-dcardbg:rgba(30, 30, 30, 0.53); 
     --color-dlightgrey:rgba(30, 30, 30, 0.67);   
+    --color-dmodel:rgba(30, 30, 30, 0.76);
+    --color-dmodelInput:rgba(0, 0, 0, 0.36);
+
 }
 
 .navFont{

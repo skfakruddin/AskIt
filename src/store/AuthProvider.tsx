@@ -31,7 +31,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     async function fetchUser () {
         try {
             const res = await fetch(`${BE_URL}/auth/user`, { credentials: "include" });
-            console.log("Fetching User");
             if (!res.ok) throw new Error("Failed to fetch user");
             const data = await res.json();
             setUser({
@@ -52,7 +51,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
 
     const login = () => {
-        console.log("login");
         window.location.href = `${BE_URL}/auth/google`;
     };
 

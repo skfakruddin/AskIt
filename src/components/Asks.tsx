@@ -6,6 +6,7 @@ import ModalInput from './ui/ModalInput'
 import { FieldValues, useForm } from 'react-hook-form'
 import { askQuestion } from '../handlers/socketHandlers'
 import toast from 'react-hot-toast'
+import { useValidate } from '../hooks/useValidate'
 type AsksProps = {
   asks: Record<string, ask>
 }
@@ -15,10 +16,12 @@ function Asks ({ asks }: AsksProps) {
 
   async function onAsk (data: FieldValues) {
     const question = data.ask;
-    if(question && question.split('').length >3){
+    const isValid = useValidate(question);
+    
+    if(question && question.split('').length >3 && isValid){
       await askQuestion(socketRef as WebSocket, joinCode, question)
     }else{
-      toast.error('Too small')
+      toast.error('Invalid Question');
     }
     reset()
   }

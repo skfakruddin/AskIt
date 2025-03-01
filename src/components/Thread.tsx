@@ -26,14 +26,14 @@ function Thread ({ ask }: { ask: Ask }) {
       <div className='sticky top-0 p-2 backdrop-blur-md rounded-t-lg z-0'>
         <div className='text-lg font-semibold flex'>
           <p>{generateRandomEmoji()}</p>
-          <p className='pl-2'>{ask.question}</p>
+          <p className='px-2'>{ask.question}</p>
         </div>
       </div>
       <div className='pl-10.5'>
         {ask.replies.map((reply, index) => (
           <div
             key={index}
-            className='border-l-2 pl-2 mt-3 break-words w-full pr-4 text-justify'
+            className='border-l-2 pl-2 mt-3 break-words w-full pr-4'
           >
             <p className='whitespace-pre-wrap break-words mb-2'>{reply.reply}</p>
           </div>

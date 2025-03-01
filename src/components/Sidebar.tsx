@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router";
 import { useProfile } from "../hooks/useProfile";
 
-function Sidebar({ isOpen }: { isOpen: boolean }) {
+function Sidebar({ }: { isOpen: boolean }) {
   const location = useLocation();
   const {archive} = useProfile();
 

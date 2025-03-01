@@ -13,7 +13,6 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
       toast.error('You need to login first')
       const joinCode = location.pathname.split('/')[2]
       if (location.pathname.split('/')[1] === 'ask') {
-        console.log('Login Prot');
         navigate('/'+joinCode)
       }else{
         navigate('/')
