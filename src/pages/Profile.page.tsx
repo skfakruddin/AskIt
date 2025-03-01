@@ -41,7 +41,7 @@ const Profile = () => {
         setCurrentRoom(null);
       });
     return () => {
-      setCurrentRoom(null); // Reset currentRoom when the component unmounts
+      setCurrentRoom(null);
     };
   }, [joinCode]);
 
@@ -71,7 +71,7 @@ const Profile = () => {
             className={
               `${
                 isInRoom ? "flex" : "hidden md:flex"
-              } flex-col col-span-4 bg-dcardbg rounded-lg p-4 overflow-y-scroll`
+              } flex-col col-span-4 bg-dcardbg rounded-lg  overflow-y-scroll`
             }
           >
             <Outlet key={joinCode} /> {/* Add key prop to force re-render */}
